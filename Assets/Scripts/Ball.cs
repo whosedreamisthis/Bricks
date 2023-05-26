@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] float speed = 500;
     [SerializeField] Transform paddle;
+    [SerializeField] GameObject explosion;
     public bool inPlay = false;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -33,6 +34,16 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             inPlay = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Brick"))
+        {
+            GameObject particleSystemTransform = Instantiate(explosion, other.transform.position, Quaternion.identity);
+            Destroy(particleSystemTransform, 2.5f);
+            Destroy(other.gameObject);
         }
     }
 
