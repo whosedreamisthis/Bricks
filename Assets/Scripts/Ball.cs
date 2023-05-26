@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     [SerializeField] float speed = 500;
     [SerializeField] Transform paddle;
     [SerializeField] GameObject explosion;
+    [SerializeField] GameManager gameManager;
     public bool inPlay = false;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+        if (gameManager.gameOver) { return; }
         if (!inPlay)
         {
             transform.position = paddle.position + transform.up * 0.5f;
@@ -34,6 +36,7 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             inPlay = false;
+            gameManager.UpdateLives(-1);
         }
     }
 
@@ -42,7 +45,11 @@ public class Ball : MonoBehaviour
         if (other.gameObject.CompareTag("Brick"))
         {
             GameObject particleSystemTransform = Instantiate(explosion, other.transform.position, Quaternion.identity);
+
             Destroy(particleSystemTransform, 2.5f);
+            Brick brick = other.gameObject.GetComponent<Brick>();
+            gameManager.UpdateScore(brick.points);
+            //Debug.Log("scor " + brick.points)
             Destroy(other.gameObject);
         }
     }
