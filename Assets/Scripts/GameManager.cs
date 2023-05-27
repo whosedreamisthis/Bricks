@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int numberOfBricks;
     int score = 0;
     int lives = 3;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         livesText.text = "Lives: " + lives.ToString();
         gameOverPanel.SetActive(false);
+        numberOfBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
     }
     public void UpdateLives(int changeInLives)
     {
@@ -51,6 +53,15 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void UpdateNumberOfBricks()
+    {
+        numberOfBricks--;
+        if (numberOfBricks == 0)
+        {
+            GameOver();
+        }
     }
 
 }

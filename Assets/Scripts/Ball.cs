@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     [SerializeField] Transform paddle;
     [SerializeField] GameObject explosion;
     [SerializeField] GameManager gameManager;
+    [SerializeField] Transform extraLifePowerup;
     public bool inPlay = false;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -44,11 +45,16 @@ public class Ball : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Brick"))
         {
+            int randChance = Random.Range(1, 101);
+            if (randChance < 20)
+            {
+                Instantiate(extraLifePowerup, other.transform.position, Quaternion.identity);
+            }
             GameObject particleSystemTransform = Instantiate(explosion, other.transform.position, Quaternion.identity);
-
             Destroy(particleSystemTransform, 2.5f);
             Brick brick = other.gameObject.GetComponent<Brick>();
             gameManager.UpdateScore(brick.points);
+            gameManager.UpdateNumberOfBricks();
             //Debug.Log("scor " + brick.points)
             Destroy(other.gameObject);
         }

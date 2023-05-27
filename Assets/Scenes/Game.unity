@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f208d231345b44e8ebe8bbb0070197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBricks: 0
   scoreText: {fileID: 501713449}
   livesText: {fileID: 1193726572}
   gameOverPanel: {fileID: 1487940600}
@@ -849,9 +850,10 @@ GameObject:
   - component: {fileID: 343760681}
   - component: {fileID: 343760680}
   - component: {fileID: 343760683}
+  - component: {fileID: 343760684}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -868,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2661c54ac69b7f44fbdb4a2ba29bc3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   rightScreenEdge: 5.4
   leftScreenEdge: -5.4
   gameManager: {fileID: 183171268}
@@ -971,6 +973,27 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.49514824, y: 0.3308095}
   m_UseDelaunayMesh: 0
+--- !u!50 &343760684
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343760679}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!4 &358006342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8154082699303814298, guid: 2c7f8f6a7a4f6f64eb6721ed8e896a60, type: 3}
@@ -2168,10 +2191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3522188acd21142b51a0bf72ea0647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 350
   paddle: {fileID: 343760682}
   explosion: {fileID: 8064954151065104304, guid: 2be782b533b89004286844dc5b670249, type: 3}
   gameManager: {fileID: 183171268}
+  extraLifePowerup: {fileID: 7739520072927199880, guid: 50a56d12849ca5a428590a625dde54f9, type: 3}
   inPlay: 0
 --- !u!4 &1010128293 stripped
 Transform:
